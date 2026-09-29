@@ -32,6 +32,8 @@ build/
 
 ### Documentação & Arquivos Markdown ###
 *.md
+!README.md
+
 
 ### Pastas temporárias de testes e relatórios ###
 reports/
