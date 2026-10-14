@@ -77,7 +77,7 @@ public class RestauranteController {
                     .orElse(null);
 
             if (restauranteAtual != null) {
-                BeanUtils.copyProperties(restaurante, restauranteAtual, "id");
+                BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
 
                 restauranteAtual = cadastroRestaurante.salvar(restauranteAtual);
                 return ResponseEntity.ok(restauranteAtual);
@@ -91,7 +91,8 @@ public class RestauranteController {
     }
 
     @PatchMapping("/{restauranteId}")
-    public ResponseEntity<?> atualizarParcial(@PathVariable Long restauranteId, @RequestBody Map<String, Object> campos) {
+    public ResponseEntity<?> atualizarParcial(@PathVariable Long restauranteId,
+            @RequestBody Map<String, Object> campos) {
 
         Restaurante restauranteAtual = restauranteRepository.findById(restauranteId).orElse(null);
 
@@ -107,7 +108,7 @@ public class RestauranteController {
     private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino) {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        
+
         Restaurante restauranteOrigem = objectMapper.convertValue(dadosOrigem, Restaurante.class);
 
         dadosOrigem.forEach((nomePropriedade, valorPropriedade) -> {

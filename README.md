@@ -17,7 +17,7 @@ Este repositório contém a implementação da **AlgaFood API**, construída dur
 O objetivo principal deste projeto é consolidar o desenvolvimento **Backend Java**, evoluindo progressivamente desde a base até a arquitetura corporativa avançada.
 
 - **Autor:** Joabe ([joabdevelop](https://github.com/joabdevelop))
-- **Status do Projeto:** 🟡 **Em Andamento** (Módulos 1 a 5 concluídos; Módulo 6 iniciado).
+- **Status do Projeto:** 🟡 **Em Andamento** (Módulos 1 a 6 concluídos; Módulo 7 - Flyway iniciado).
 
 ---
 
@@ -27,10 +27,11 @@ O objetivo principal deste projeto é consolidar o desenvolvimento **Backend Jav
 graph LR
     M13["Módulos 1-3<br/>Fundamentos REST & RMM"] --> M4["Módulo 4<br/>JPA & Hibernate Raiz"]
     M4 --> M5["Módulo 5<br/>Spring Data JPA & Criteria"]
-    M5 --> M6["Módulo 6 ⏳<br/>Mapeamento Avançado JPA"]
+    M5 --> M6["Módulo 6 ✅<br/>Mapeamento Avançado JPA"]
+    M6 --> M7["Módulo 7 ⏳<br/>Pool & Migrações Flyway"]
 ```
 
-### ✅ Módulos Concluídos (1 ao 5)
+### ✅ Módulos Concluídos (1 ao 6)
 
 #### 🔹 Módulos 1 a 3: Fundamentos de APIs RESTful & Boas Práticas
 - Conceitos de arquitetura REST, Recursos, URIs e representações em JSON.
@@ -54,11 +55,19 @@ graph LR
 - **Tratamento de Dependência Circular:** Uso de `@Lazy` na injeção de dependências do Spring para resolução de ciclos entre repositórios customizados.
 - **Segurança de Nulos com `Optional<T>`:** Manipulação de retornos seguros com `.orElseThrow()` na camada de serviço e `.orElse(null)` nos controllers.
 
+#### 🔹 Módulo 6: Mapeamento de Entidades Avançado com JPA e Hibernate (Concluído)
+- **Relacionamentos Bidirecionais (`@OneToMany` & `@ManyToOne`):** Mapeamento com `mappedBy` e prevenção de loops infinitos na serialização com `@JsonIgnore`.
+- **Relacionamentos Muitos-para-Muitos (`@ManyToMany`):** Configuração explícita de tabelas de junção via `@JoinTable` (`restaurante_forma_pagamento`, `grupo_permissao`, `usuario_grupo`).
+- **Classes Incorporáveis (`@Embeddable` & `@Embedded`):** Reutilização e organização de atributos de valor (`Endereco` incorporado em `Restaurante`).
+- **Auditoria Automática de Entidades:** Gerenciamento automático de registros temporais com `@CreationTimestamp` e `@UpdateTimestamp`.
+- **Estratégias de Carregamento (Lazy vs. Eager Loading):** Análise de impacto de `FetchType.LAZY` e `FetchType.EAGER` e resolução do problema de N+1 consultas com `join fetch` em JPQL.
+- **Ciclo de Vida do JPA & `EntityManager`:** Compreensão e manipulação prática dos estados das entidades (*Transient*, *Managed*, *Detached* e *Removed*).
+
 ---
 
-### ⏳ Módulo Atual em Andamento
+### ⏳ Próximo Módulo em Andamento
 
-- **Módulo 6:** *Mapeamento de entidades avançado com JPA e Hibernate* (Relacionamentos 1:N, N:N, Eager/Lazy loading, Cascade, Embeddable).
+- **Módulo 7:** *Pool de Conexões e Migrações de Banco de Dados com Flyway*.
 
 ---
 
